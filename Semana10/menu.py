@@ -1,7 +1,7 @@
-from actions import inserting_student, show_all_students, show_average, top_students
-from data import export_to_csv, import_from_csv, list_exported_files
+from actions import inserting_student, show_all_students, top_students
+from data import export_to_csv, import_from_csv
 
-def main_menu():
+def main_menu(students):
     while True:
         print('\n' + '='*40)
         print('Thanks for using the Lyfter students system!')
@@ -23,30 +23,22 @@ def main_menu():
             continue
         
         if selection == 1:
-            insert_student()
+            inserting_student(students)
             input("Press Enter to continue...")
         elif selection == 2:
-            all_students()
+            show_all_students(students)
             input("Press Enter to continue...")
         elif selection == 3:
-            top_students()
+            top_students(students)
             input("Press Enter to continue...")
         elif selection == 4:
-            showing_total_average()
+            show_general_average(students)
+            input("Press Enter to continue...")
         elif selection == 5:
-            print("\n--- EXPORT DATA ---")
-            filename = input("File name (Enter for 'students_export.csv'): ")
-            if filename.strip() == "":
-                filename = "students_export.csv"
-            export_to_csv(filename)
+            export_to_csv(students)
             input("Press Enter to continue...")
         elif selection == 6:
-            print("\n--- IMPORT DATA ---")
-            list_exported_files()
-            filename = input("File name to import (Enter for 'students_export.csv'): ")
-            if filename.strip() == "":
-                filename = "students_export.csv"
-            import_from_csv(filename)
+            import_from_csv(students)
             input("Press Enter to continue...")
         elif selection == 8:
             print('Bye Bye!')
@@ -55,40 +47,15 @@ def main_menu():
             print("Invalid option. Choose 1-6 or 8")
             input("Press Enter to continue...")
 
-def insert_student():
-    inserting_student()
-
-def all_students():
-    show_all_students()
-
-def showing_total_average():
-    while True:
-        print("\n--- AVERAGE SUBMENU ---")
-        print("1 = Spanish")
-        print("2 = English")
-        print("3 = Social")
-        print("4 = Sciences")
-        print("5 = Go to main menu")
-        
-        try:
-            selection = int(input("Choose an option: "))
-        except ValueError:
-            print("Please enter a valid number (1-5)")
-            continue
-        
-        if selection == 1:
-            show_average(2)
-            input("Press Enter to continue...")
-        elif selection == 2:
-            show_average(3)
-            input("Press Enter to continue...")
-        elif selection == 3:
-            show_average(4)
-            input("Press Enter to continue...")
-        elif selection == 4:
-            show_average(5)
-            input("Press Enter to continue...")
-        elif selection == 5:
-            break
-        else:
-            print("Please choose from 1 to 5")
+def show_general_average(students):
+    if len(students) == 0:
+        print("No hay estudiantes registrados")
+        return
+    
+    total_general = 0
+    for student in students:
+        promedio = (student['spanish'] + student['english'] + student['social'] + student['sciences']) / 4
+        total_general += promedio
+    
+    promedio_general = total_general / len(students)
+    print(f"El promedio general de todos los estudiantes es: {promedio_general:.2f}")

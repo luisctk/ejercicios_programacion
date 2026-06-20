@@ -1,132 +1,107 @@
-import menu
-import csv
-
-def inserting_student():
+def inserting_student(students):
     name = input('Insert a name = ')
     section = input('Insert a section = ')
     spanish = spanish_grade()
     english = english_grade()
     social = social_grade()
     sciences = sciences_grade()
-    saving_students(name, section,spanish , english, social, sciences)
-    menu.main_menu()
+    
+    student = {
+        'name': name,
+        'section': section,
+        'spanish': spanish,
+        'english': english,
+        'social': social,
+        'sciences': sciences
+    }
+    
+    students.append(student)
+    print(f"Estudiante {name} agregado correctamente")
 
 def spanish_grade():
-        while True:
+    while True:
+        try:
             grade = int(input('Insert the spanish grade = '))
-            try:
-                if grade <= 0:
-                    print('The grade need to be greater to 0')
-                elif grade >= 100:
-                    print('The max grade is 100')
-                else:
-                    return grade
-            except ValueError as error:
-                print(f'The value entered is no valid = {error}')
+            if grade < 0:
+                print('The grade needs to be greater or equal than 0')
+            elif grade > 100:
+                print('The max grade is 100')
+            else:
+                return grade
+        except ValueError:
+            print('Please enter a valid number (0-100)')
 
 def english_grade():
-        while True:
+    while True:
+        try:
             grade = int(input('Insert the english grade = '))
-            try:
-                if grade <= 0:
-                    print('The grade need to be greater to 0')
-                elif grade >= 100:
-                    print('The max grade is 100')
-                else:
-                    return grade
-            except ValueError as error:
-                print(f'The value entered is no valid = {error}')
-                
+            if grade < 0:
+                print('The grade needs to be greater or equal than 0')
+            elif grade > 100:
+                print('The max grade is 100')
+            else:
+                return grade
+        except ValueError:
+            print('Please enter a valid number (0-100)')
+
 def social_grade():
-        while True:
+    while True:
+        try:
             grade = int(input('Insert the social grade = '))
-            try:
-                if grade <= 0:
-                    print('The grade need to be greater to 0')
-                elif grade >= 100:
-                    print('The max grade is 100')
-                else:
-                    return grade
-            except ValueError as error:
-                print(f'The value entered is no valid = {error}')
+            if grade < 0:
+                print('The grade needs to be greater or equal than 0')
+            elif grade > 100:
+                print('The max grade is 100')
+            else:
+                return grade
+        except ValueError:
+            print('Please enter a valid number (0-100)')
 
 def sciences_grade():
-        while True:
+    while True:
+        try:
             grade = int(input('Insert the sciences grade = '))
-            try:
-                if grade <= 0:
-                    print('The grade need to be greater to 0')
-                elif grade >= 100:
-                    print('The max grade is 100')
-                else:
-                    return grade
-            except ValueError as error:
-                print(f'The value entered is no valid = {error}')
+            if grade < 0:
+                print('The grade needs to be greater or equal than 0')
+            elif grade > 100:
+                print('The max grade is 100')
+            else:
+                return grade
+        except ValueError:
+            print('Please enter a valid number (0-100)')
 
-def saving_students(name, section, spanish, english, social, sciences):
-    with open('students.csv','a',newline='',encoding='utf-8') as file:
-        fieldnames = ['name', 'section', 'spanish', 'english', 'social', 'sciences']
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        if file.tell() == 0:
-            writer.writeheader()
+def show_all_students(students):
+    if len(students) == 0:
+        print("No hay estudiantes registrados")
+        return
+    
+    print("\n" + "="*60)
+    print(f"{'Name':<20} {'Section':<10} {'Spanish':<8} {'English':<8} {'Social':<8} {'Sciences':<8}")
+    print("="*60)
+    
+    for student in students:
+        print(f"{student['name']:<20} {student['section']:<10} {student['spanish']:<8} {student['english']:<8} {student['social']:<8} {student['sciences']:<8}")
+    print("="*60)
 
-        writer.writerow({
-            'name':name,
-            'section':section,
-            'spanish':spanish,
-            'english':english,
-            'social':social,
-            'sciences':sciences,
-        })
-        print(f"Estudiante {name} guardado")
-
-
-def show_all_students():
-     with open('students.csv',"r",encoding='utf-8') as file:
-          reader = csv.reader(file)
-
-          next(reader)
-
-          for read in reader:
-               print(read)
-
-def show_average(num_average):
-     column = num_average
-     value = 0
-     with open('students.csv',"r",encoding='utf-8',newline='') as file:
-          final_value = 0
-          count = 0
-          reader = csv.reader(file)
-          average = 0
-          next(reader)
-          for read in reader:
-               if len(read) > column:
-                    count += 1 
-                    value += int(read[column])
-                    final_value = value
-                    average = final_value / count
-
-          
-          print(f'The average is = {average}')      
-                    
-
-def top_students():
-     with open('students.csv', 'r', newline='') as file:
-          top_3 = []
-          reader = csv.reader(file)
-          next(reader)
-          list_value = list(reader)
-          for read in reader:
-                if len(read) == 2:
-                    spanish_grade_value = list_value[2]
-                    english_grade_value = list_value[3]
-                    social_grade_value = list_value[4]
-                    sciences_grade_value = list_value[5]
-                    count = 4
-                    total_value = spanish_grade_value + english_grade_value + social_grade_value + sciences_grade_value / count
-                    max(total_value)
-                    print(total_value)            
-
-
-        
-        
+def top_students(students):
+    if len(students) == 0:
+        print("No hay estudiantes registrados")
+        return
+    
+    students_with_avg = []
+    
+    for student in students:
+        average = (student['spanish'] + student['english'] + student['social'] + student['sciences']) / 4
+        students_with_avg.append((student['name'], student['section'], average))
+    
+    students_with_avg.sort(key=lambda x: x[2], reverse=True)
+    
+    print("\n" + "="*50)
+    print("TOP 3 BEST STUDENTS")
+    print("="*50)
+    
+    for i in range(min(3, len(students_with_avg))):
+        name, section, avg = students_with_avg[i]
+        print(f"{i+1}. {name} (Section: {section}) - Average: {avg:.2f}")
+    
+    print("="*50)
