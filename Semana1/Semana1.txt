@@ -1,0 +1,51 @@
+<aside>
+💡
+
+Ejercicios
+
+1. Cree un algoritmo para ver un video en Youtube. Sea lo más especifico posible.
+    1. Enciendo la computadora
+    2. Espero que cargue la pantalla de inicio
+    3. Elijo el perfil 
+    4. Espero que cargue el perfil
+    5. Si ya cargo el perfil
+        1. Abro el navegador
+    6. En la barra de busqueda del navegador escribo youtube.com
+    7. Si ya cargo youtube
+        1. En la barra de busqueda de youtube busco video que me interese
+    8. disfruto del video
+2. Cree un algoritmo que describa su rutina diaria. Use condiciones, condiciones multiples y ciclos.
+    1. Despierto
+    2. Si tengo hambre
+        1. Voy a la cocina
+            1. Reviso el microondas
+        2. Si no hay comida
+            1. Cocino algo
+        3. Si hay comida
+            1. Como algo
+    3.  Mientras no sean las 5 de la tarde:
+        1. Ver tv
+        2. Si ya son las 5 de la tarde
+            1. Verificar si esta vestido:
+                1. Si le falta vestise:
+                    1. Ir al cuarto
+                    2. cambiar de ropa.
+                2. Sino, ir a la sala: 
+                    1. Toma las llaves
+                    2. Se dirige al vehiculo
+                3. Maneja al trabajo
+            
+    4. Cuando llegue al trabajo
+        1. Hace clock in
+        2. Deja su mochila en el break room
+        3. Si quiere ir al bano
+            1. Se dirige al bano
+        4. Sino, quiere ir
+            1. Se dirige a su puesto
+        5. Mientras no sean las 6 de la tarde:
+            1. Sigue trabajando
+        6. Fin Mientras no sean las 6 de la tarde
+        7. Hacer clock out
+        8. Manejar a casa
+    5. Fin
+</aside>

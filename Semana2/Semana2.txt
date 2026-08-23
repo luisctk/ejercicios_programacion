@@ -1,0 +1,50 @@
+Solucion #1:
+
+1. Inicio
+2. Definir `precio de producto`
+3. Definir `precio de final`
+4. Definir `descuento`
+5. Mostrar “Introdusca el precio del producto”
+6. Pedir `precio de producto`
+7. Si ( `precio de producto` < 100 ) entonces:
+    1. `descuento` = `precio de producto` * 0.02
+    2. `precio de final` = `descuento` - `precio de producto`
+8. Sino (`precio de producto` > 100 )entonces:
+    1. `descuento` = `precio de producto` * 0.10
+    2. `precio de final` = `descuento` - `precio de producto`
+9. Finsi
+10. Mostrar “Su precio final aplicando un descuento es `precio de final`”
+11. Fin
+
+Solucion #2:
+
+1. Inicio
+2. Definir `tiempo en segundos`
+3. Definir `segundos faltantes`
+4. Definir `resultado`
+5. Mostrar “Introduzca tiempo en segundos”
+6. Pedir `tiempo en segundos`
+7. Si ( `tiempo en segundos` < 600 ) entonces:
+    1. `segundos faltantes` = `tiempo en segundos` - 600
+    2. `resultado`  = Mostrar “ Faltan  `segundos faltantes` para 10 minutos”
+8. Sino ( `tiempo en segundos` == 600) entonces:
+    1. `resultado` = Mostrar “ Es exactamente igual ”
+9. Sino 
+    1. `resultado` = Mostrar “es mayor”
+10. Finsi
+11. `resultado` 
+12. Fin
+
+Solucion #3:
+
+1. Inicio
+2. Definir `numero` 
+3. Definir `numero inicial`  = 1
+4. Definir `numero final`  
+5. Mostrar “ Introduce un numero “
+6. Pedir `numero`  
+7. Mientras ( `numero inicial` ≤  `numero` ) repetir:
+    1. `numero final` = `numero final` + `numero inicial`
+    2. `numero inicial`= `numero inicial` + 1
+8. FinMientras
+9. Mostrar “ La suma de tu numero es `numero final` ”

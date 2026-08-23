@@ -1,0 +1,18 @@
+[
+    {
+        "name": {
+            "english": "Loiu"
+        },
+        "type": [
+            "Ice"
+        ],
+        "base": {
+            "HP": 8,
+            "Attack": 9,
+            "Defense": 4,
+            "Sp. Attack": 2,
+            "Sp. Defense": 6,
+            "Speed": 5
+        }
+    }
+]
